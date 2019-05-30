@@ -1,0 +1,82 @@
+[
+  {
+    "productId": "1",
+    "productName": "LG",
+    "productModel": "LG-m1",
+    "productOffer": "diwali Offer",
+    "cost": 12378.0,
+    "stock": 20,
+    "sold": 10,
+    "balance": 10
+  },
+  {
+    "productId":  "2",
+    "productName": "LG",
+    "productModel": "LG-m2",
+    "productOffer": "No Offer",
+    "cost": 123400.0,
+    "stock": 20,
+    "sold": 10,
+    "balance": 10
+  },
+  {
+    "productId":  "3",
+    "productName": "Samsang",
+    "productModel": "Samsang-m1",
+    "productOffer": "Aadi Offer",
+    "cost": 12378.0,
+    "stock": 20,
+    "sold": 10,
+    "balance": 10
+  },
+  {
+    "productId":  "4",
+    "productName": "Samsang",
+    "productModel": "Samsang-m2",
+    "productOffer": "no Offer",
+    "cost": 12378.0,
+    "stock": 20,
+    "sold": 10,
+    "balance": 10
+  },
+  {
+    "productId":   "5",
+    "productName": "Sony",
+    "productModel": "Sony-m1",
+    "productOffer": "diwali Offer",
+    "cost": 12378.0,
+    "stock": 20,
+    "sold": 10,
+    "balance": 10
+  },
+  {
+    "productId":   "6",
+    "productName": "Sony",
+    "productModel": "Sony-m2",
+    "productOffer": "no Offer",
+    "cost": 12378.0,
+    "stock": 20,
+    "sold": 10,
+    "balance": 10
+  },
+  {
+    "productId":   "7",
+    "productName": "Viedocon",
+    "productModel": "Viedocon-m1",
+    "productOffer": "no Offer",
+    "cost": 12378.0,
+    "stock": 20,
+    "sold": 10,
+    "balance": 10
+  },
+  {
+    "productId":   "8",
+    "productName": "Viedocon",
+    "productModel": "Viedocon-m2",
+    "productOffer": "Aadi Offer",
+    "cost": 12378.0,
+    "stock": 20,
+    "sold": 10,
+    "balance": 10
+  }
+]

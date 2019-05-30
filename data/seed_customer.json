@@ -1,0 +1,23 @@
+[
+  {
+    "customerId": "1",
+    "customerName": "tony",
+    "phoneNo": "123456789",
+    "address": "usa,west street,co",
+    "email": "user@sample.com"
+  },
+  {
+    "customerId": "2",
+    "customerName": "john",
+    "phoneNo": "123456789",
+    "address": "usa,west street,co",
+    "email": "user@sample.com"
+  },
+  {
+    "customerId": "3",
+    "customerName": "lucy",
+    "phoneNo": "123456789",
+    "address": "usa,west street,co",
+    "email": "user@sample.com"
+  }
+]

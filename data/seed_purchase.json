@@ -1,0 +1,38 @@
+[
+  {
+    "purchaseNo":  "p1",
+    "productId":  "1",
+    "customerName": "tony",
+    "purchaseItem": "LG-m1",
+    "quantity": "1",
+    "rate": 10000,
+    "offer": 1000,
+    "paymentType": "credit card",
+    "paid": 9000,
+    "purchaseDate": ISODate("2018-06-04T00:00:00.000+0000")
+  },
+  {
+    "purchaseNo":  "p2",
+    "productId":  "6",
+    "customerName": "lucy",
+    "purchaseItem": "Sony-m2",
+    "quantity": "1",
+    "rate": 10000,
+    "offer": 1000,
+    "paymentType": "debit card",
+    "paid": 9000,
+    "purchaseDate": ISODate("2019-05-04T00:00:00.000+0000")
+  },
+  {
+  "purchaseNo":  "p3",
+  "productId":  "2",
+  "customerName": "john",
+  "purchaseItem": "LG-m2",
+  "quantity": "1",
+  "rate": 10000,
+  "offer": 1000,
+  "paymentType": "debit card",
+  "paid": 9000,
+  "purchaseDate": ISODate("2019-05-04T00:00:00.000+0000")
+  }
+]
