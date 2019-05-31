@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Customer from '../customer/customerDetails'
+import Customer from '../customer/Customer.vue'
 import HomePage from '../home/HomePage.vue'
-import Product from '../Product/ProductDetail.vue'
+import Product from '../Product/Product.vue'
 import BrowseCompany from '../company/BrowseCompany.vue'
 import CompanyLG from '../company/CompanyLG.vue'
 import CompanySony from '../company/CompanySony.vue'
@@ -11,7 +11,7 @@ import CompanyViedocon from '../company/CompanyViedocon.vue'
 import SidebarStandard from '../sidebars/SidebarStandard.vue'
 // import SidebarBuild from '../sidebars/SidebarBuild.vue'
 import Login from '../home/Login.vue'
-import Purchase from '../purchase/purchaseDetails'
+import Purchase from '../purchase/purchaseDetails.vue'
 
 Vue.use(Router)
 

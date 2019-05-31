@@ -130,13 +130,21 @@
         </td>
       </template>
       <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">Reset</v-btn>
+        <v-btn color="primary" @click=" ">Reset</v-btn>
       </template>
     </v-data-table>
   </div>
 </template>
 <script>
+  import {mapState, mapGetters} from 'vuex'
+
   export default {
+    name: 'purchase Details',
+    created() {
+      this.$store.dispatch('getPurchase')
+      console.log('the store  purchase is', this.$store)
+
+    },
     data: () => ({
       transactionDatePicker: false,
       dialog: false,
@@ -160,7 +168,7 @@
         {text: 'Check', value: 'Check'},
         {text: 'Deposit', value: 'Deposit'}
       ],
-      purchase: [],
+      // purchase: [],
       editedIndex: -1,
       editedItem: {
         purchaseNo: '',
@@ -187,23 +195,20 @@
         purchaseDate: ''
       }
     }),
-// created() {
-    //   this.getPurchase()
-    // },
+
 
     computed: {
+      ...mapState({
+        purchase: state => state.purchase.purchaseItem
+      }),
+
+      ...mapGetters('purchase', {}),
+
       formTitle() {
         return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-      }
-
-
-      //   purchase() {
-      //     return this.$store.getters.purchase
-      //     console.log("the items got :" + items)
-      //   }
+      },
 
     },
-
 
     watch: {
       dialog(val) {
@@ -211,51 +216,51 @@
       }
     },
 
-    created() {
-      this.initialize()
-    },
+    // created() {
+    //   this.initialize()
+    // },
 
     methods: {
-      initialize() {
-        this.purchase = [
-          {
-            "purchaseNo": "p1",
-            "productId": "1",
-            "customerName": "tony",
-            "purchaseItem": "LG-m1",
-            "quantity": 1,
-            "rate": 10000,
-            "offer": 1000,
-            "paymentType": "Credit Card",
-            "paid": 9000,
-            "purchaseDate": "2018-06-04"
-          },
-          {
-            "purchaseNo": "p2",
-            "productId": "6",
-            "customerName": "lucy",
-            "purchaseItem": "Sony-m2",
-            "quantity": 1,
-            "rate": 10000,
-            "offer": 1000,
-            "paymentType": "Debit Card",
-            "paid": 9000,
-            "purchaseDate": "2019-05-04"
-          },
-          {
-            "purchaseNo": "p3",
-            "productId": "2",
-            "customerName": "john",
-            "purchaseItem": "LG-m2",
-            "quantity": 1,
-            "rate": 10000,
-            "offer": 1000,
-            "paymentType": "Debit Card",
-            "paid": 9000,
-            "purchaseDate": "2019-05-04"
-          }
-        ]
-      },
+      // initialize() {
+      //   this.purchase = [
+      //     {
+      //       "purchaseNo": "p1",
+      //       "productId": "1",
+      //       "customerName": "tony",
+      //       "purchaseItem": "LG-m1",
+      //       "quantity": 1,
+      //       "rate": 10000,
+      //       "offer": 1000,
+      //       "paymentType": "Credit Card",
+      //       "paid": 9000,
+      //       "purchaseDate": "2018-06-04"
+      //     },
+      //     {
+      //       "purchaseNo": "p2",
+      //       "productId": "6",
+      //       "customerName": "lucy",
+      //       "purchaseItem": "Sony-m2",
+      //       "quantity": 1,
+      //       "rate": 10000,
+      //       "offer": 1000,
+      //       "paymentType": "Debit Card",
+      //       "paid": 9000,
+      //       "purchaseDate": "2019-05-04"
+      //     },
+      //     {
+      //       "purchaseNo": "p3",
+      //       "productId": "2",
+      //       "customerName": "john",
+      //       "purchaseItem": "LG-m2",
+      //       "quantity": 1,
+      //       "rate": 10000,
+      //       "offer": 1000,
+      //       "paymentType": "Debit Card",
+      //       "paid": 9000,
+      //       "purchaseDate": "2019-05-04"
+      //     }
+      //   ]
+      // },
 
       editItem(item) {
         this.editedIndex = this.purchase.indexOf(item)

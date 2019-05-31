@@ -35,6 +35,7 @@ module.exports = function (router) {
 
   router.post('/user', function (req, res) {
     let user = new User(req.body)
+      console.log(req.body)
     user.save(function (err, user) {
       if (err) return console.log(err)
       res.status(200).json(user)
@@ -45,8 +46,8 @@ module.exports = function (router) {
     console.log(req.body)
     let qry = { _id: req.params.id }
     let doc = {
-      first: req.body.firstName,
-      last: req.body.lastName,
+      first: req.body.first,
+      last: req.body.last,
       email: req.body.email,
       password: req.body.password,
       isActive: req.body.isActive

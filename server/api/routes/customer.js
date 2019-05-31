@@ -29,21 +29,7 @@ module.exports = function (router) {
                     error: err
                 }))
     })
-    // get specific customer from database
-    router.get('/customer/email/:email', function (req, res) {
-        console.log("Customer:"+customer)
-        console.log(req.params.email)
-        customer.find({'email': req.params.email}).exec()
-            .then(docs => {
-                console.log(docs);
-                return res.status(200)
-                .json(docs)})
-            .catch(err => res.status(500)
-                .json({
-                    message: 'Error finding user by email',
-                    error: err
-                }))
-    })
+
     // Create new customer document...
     router.post('/customer', function (req, res) {
         let transaction = new customer(req.body)
@@ -57,6 +43,7 @@ module.exports = function (router) {
         console.log(req.body)
         let qry = {_id: req.params.id}
         let doc = {
+            customerId: req.body.customerId,
             customerName: req.body.customerName,
             phoneNo: req.body.phoneNo,
             address: req.body.address,
@@ -73,7 +60,7 @@ module.exports = function (router) {
     router.delete('/customer/:id', function (req, res) {
         console.log(req.body)
         let qry = {_id: req.params.id}
-        customer.delete(qry, doc, function (err, respRaw) {
+        customer.remove(qry, function (err, respRaw) {
             if (err) return console.log(err)
             res.status(200).json(respRaw)
         })

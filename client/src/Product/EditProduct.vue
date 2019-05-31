@@ -7,7 +7,7 @@
       color="orange"
       dark
       fixed
-      @click.stop="showEditTransactionDialog"
+      @click.stop="showProductDialog"
     >
       <v-icon>add</v-icon>
     </v-btn>
@@ -124,10 +124,10 @@
     methods: {
       saveProduct: function () {
         console.log('Saving product record:', this.product)
-        this.$store.dispatch('saveProduct', this.product)
+        // this.$store.dispatch('saveProduct', this.product)
         this.dialog = false
       },
-      showEditTransactionDialog: function () {
+      showProductDialog: function () {
         this.dialog = true
       }
     }

@@ -29,10 +29,11 @@ module.exports = function (router) {
 
     // Create new product document...
     router.post('/product', function (req, res) {
-        let transaction = new Product(req.body)
-        transaction.save(function (err, transaction) {
+        console.log(req.body)
+        let product = new Product(req.body)
+        product.save(function (err, product) {
             if (err) return console.log(err)
-            res.status(200).json(transaction)
+            res.status(200).json(product)
         })
     })
 
@@ -60,7 +61,7 @@ module.exports = function (router) {
     router.delete('/product/:id', function (req, res) {
         console.log(req.body)
         let qry = {_id: req.params.id}
-        Product.delete(qry, doc, function (err, respRaw) {
+        Product.remove(qry, function (err, respRaw) {
             if (err) return console.log(err)
             res.status(200).json(respRaw)
         })

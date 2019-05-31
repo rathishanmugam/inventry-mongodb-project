@@ -8,10 +8,12 @@ import purchase from './modules/purchase'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
   modules: {
     user,
     product,
     purchase,
     customer
   }
+
 })

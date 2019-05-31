@@ -13,7 +13,7 @@
     </v-card-title>
     <v-data-table
       :headers='headers'
-      :items='items'
+      :items='customer'
       :search='search'
     >
       <template slot='items' slot-scope='props'>
@@ -108,7 +108,15 @@
 </template>
 
 <script>
+  import {mapState,mapGetters} from 'vuex'
+
   export default {
+    name: 'customer',
+    created(){
+      this.$store.dispatch('getCustomer')
+      console.log('the store customer   is' , this.$store)
+
+    },
     data() {
       return {
         dialog: false,
@@ -131,41 +139,40 @@
           address: '',
           email: ''
         },
-        items: [
-          {
-            'customerId': '1',
-            'customerName': 'Lone',
-            'phoneNo': '123456789',
-            'address': 'west  street',
-            'email': 'user@sample.com'
-          },
-          {
-            'customerId': '2',
-            'customerName': 'hema',
-            'phoneNo': '123456789',
-            'address': 'south street',
-            'email': 'user@sample.com'
-          },
-          {
-            'customerId': '3',
-            'customerName': 'mani',
-            'phoneNo': '123456789',
-            'address': 'north street',
-            'email': 'user@sample.com'
-          }
-        ]
+        // items: [
+        //   {
+        //     'customerId': '1',
+        //     'customerName': 'Lone',
+        //     'phoneNo': '123456789',
+        //     'address': 'west  street',
+        //     'email': 'user@sample.com'
+        //   },
+        //   {
+        //     'customerId': '2',
+        //     'customerName': 'hema',
+        //     'phoneNo': '123456789',
+        //     'address': 'south street',
+        //     'email': 'user@sample.com'
+        //   },
+        //   {
+        //     'customerId': '3',
+        //     'customerName': 'mani',
+        //     'phoneNo': '123456789',
+        //     'address': 'north street',
+        //     'email': 'user@sample.com'
+        //   }
+        // ]
       }
     },
-    // created() {
-    //   this.getCustomer()
-    // },
 
-    // computed:{
-    //   items() {
-    //     return this.$store.getters.customer
-    //     console.log("the items got :" + items)
-    //   }
-    // },
+
+    computed: {
+      ...mapState({
+        customer: state => state.customer.customer
+      }),
+
+      ...mapGetters('customer', {})
+    },
     methods: {
       editItem (item) {
         this.editedIndex = this.items.indexOf(item)
@@ -186,7 +193,7 @@
       },
 
       showAlert (a) {
-        if (event.target.classList.contains('btn__content')) return;
+        if (event.target.classList.contains('btn__content')) return
         alert('Alert! \n' + a.productName);
       }
     }

@@ -73,7 +73,7 @@
         this.$store.dispatch('logInUser', payload)
           .then(() => {
             if (vm.isLoggedIn) {
-              this.$router.push({ path: '/product' })
+              this.$router.push({ path: '/' })
             } else {
               vm.showAlert = true
             }

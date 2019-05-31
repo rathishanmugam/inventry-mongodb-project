@@ -1,30 +1,22 @@
 import Vue from 'vue'
-const state = {
-  purchaseNo: '',
-  productId: null,
-  customerName: '',
-  purchaseItem: '',
-  quantity: 0,
-  rate: 0,
-  offer: 0,
-  paymentType: '',
-  paid: 0,
-  purchase:[]
-}
-const getters = {
-  purchase: state => state.purchase,
-}
-const actions = {
+
+export default{
+ state : {
+
+  purchaseItem:[]
+},
+ getters : {
+  purchase: state =>{ return state.purchaseItem }
+},
+actions : {
   savePurchase ({commit, dispatch, state, rootState}, product) {
     // Add product to the database
     console.log('the saving product record is:', product)
     const oldCustomer = state.product.find(item => item.id === product.id)
     if (!oldCustomer) {
-      Vue.axios.post('/product', product)
+      Vue.axios.post('/purchase', product)
         .then((resp) => {
-          commit('addCustomerToState', product).then(() => {
-            dispatch('items') //in product.vue component
-          })
+          commit('addCustomerToState', product)
         })
         .catch((err) => {
           console.log('Error saving product')
@@ -42,12 +34,10 @@ const actions = {
     const cartItem = state.product.find(item => item.id === product.productId)
     if (cartItem) {
       // product.productId = this.state.product.productId
-      Vue.axios.put('/product/' + this.state.product.productId, product)
+      Vue.axios.put('/purchase/' + this.state.product.productId, product)
         .then((resp) => {
           console.log('The Upadating Record Is:', resp)
-          commit('updateCustomerInState', product).then(() => {
-            dispatch('items') //in product.vue component
-          })
+          commit('updateCustomerInState', product)
         })
         .catch((err) => {
           console.log('Error Updating product')
@@ -62,12 +52,10 @@ const actions = {
     const cartItem = state.product.find(item => item.id === product.productId)
     if (cartItem) {
       // product.productId = this.state.product.productId
-      Vue.axios.delete('/product/' + cartItem.productId, product)
+      Vue.axios.delete('/purchase/' + cartItem.productId, product)
         .then((resp) => {
           console.log('The Deleting Record Is:', product.productId)
-          commit('deleteCustomerInState', product).then(() => {
-            dispatch('items') //in product.vue component
-          })
+          commit('deleteCustomerInState', product)
         })
         .catch((err) => {
           console.log('Error Updating product')
@@ -79,42 +67,36 @@ const actions = {
   getPurchase ({commit, state, dispatch}) {
     //get Specific Customer From database
     // Vue.axios.get('/product/' + this.state.product.productId, product)
-    Vue.axios.get('/product')
+    Vue.axios.get('/purchase')
       .then((resp) => {
         let data = resp.data
+
         if (data && data.length > 0) {
-          commit('displayCustomerToState', data).then(() => {
-            dispatch('items') //in product.vue component
-          })
+          commit('displayCustomerToState', data)
         }
       })
       .catch((err) => {
-        console.log('Darn! There was an error getting transactions by month: ' + err)
+        console.log('Darn! There was an error getting purchase from table: ' + err)
       })
   }
-}
-const mutations = {
+},
+ mutations :{
   displayCustomerToState (state, data) {
     // Start by clearing the purchase state...
-    state.purchase = []
+    state.purchaseItem = []
     if (data && data.length > 0) {
-      state.purchase.push(data)
+      state.purchaseItem.push(data)
     }
-    console.log('Specific purchase  mutated: ', state.purchase)
+    console.log('Specific purchase  mutated: ', state.purchaseItem)
   },
   deleteCustomerInState (state, purchase) {
-    state.purchase.splice(state.purchase.indexOf(purchase.purchaseId), 1)
+    state.purchaseItem.splice(state.purchaseItem.indexOf(purchase.purchaseId), 1)
   },
   addCustomerToState (state, purchase) {
-    state.purchase.push(purchase)
+    state.purchaseItem.push(purchase)
   },
   updateCustomerInState (state, purchase) {
-    state.purchase.splice(state.purchase.indexOf(purchase.purchaseId), 1, purchase)
+    state.purchaseItem.splice(state.purchaseItem.indexOf(purchase.purchaseId), 1, purchase)
   }
 }
-export default {
-  state,
-  getters,
-  actions,
-  mutations
 }

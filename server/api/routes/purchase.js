@@ -1,10 +1,10 @@
-const Product = require('../../models/purchase')
+const Purchase = require('../../models/purchase')
 const mongoose = require('mongoose')
 
 // Get all purchase from database
 module.exports = function (router) {
     router.get('/purchase', function (req, res) {
-        Product.find().exec()
+        Purchase.find().exec()
             .then(docs => res.status(200)
                 .json(docs))
             .catch(err => res.status(500)
@@ -16,7 +16,7 @@ module.exports = function (router) {
 
     // get specific purchase from database
     router.get('/purchase/:id', function (req, res) {
-        Product.findById(req.params.id).exec()
+        Purchase.findById(req.params.id).exec()
             .then(docs => res.status(200)
                 .json(docs))
             .catch(err => res.status(500)
@@ -27,7 +27,7 @@ module.exports = function (router) {
     })
     // Create new purchase document...
     router.post('/purchase', function (req, res) {
-        let transaction = new Product(req.body)
+        let transaction = new Purchase(req.body)
         transaction.save(function (err, transaction) {
             if (err) return console.log(err)
             res.status(200).json(transaction)
@@ -49,7 +49,7 @@ module.exports = function (router) {
             purchaseDate: req.body.purchaseDate
         }
         console.log('the updating record is :' , doc)
-        Product.update(qry, doc, function (err, respRaw) {
+        Purchase.update(qry, doc, function (err, respRaw) {
             if (err) return console.log(err)
             res.status(200).json(respRaw)
         })
@@ -59,7 +59,7 @@ module.exports = function (router) {
     router.delete('/purchase/:id', function (req, res) {
         console.log(req.body)
         let qry = { _id: req.params.id }
-        Product.delete(qry, doc, function (err, respRaw) {
+        Purchase.remove(qry,  function (err, respRaw) {
             if (err) return console.log(err)
             res.status(200).json(respRaw)
         })

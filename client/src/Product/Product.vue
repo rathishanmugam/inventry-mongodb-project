@@ -13,7 +13,7 @@
     </v-card-title>
     <v-data-table
       :headers='headers'
-      :items='items'
+      :items='product'
       :search='search'
     >
       <template slot='items' slot-scope='props'>
@@ -117,13 +117,13 @@
             <v-icon
               small
               class='mr-2'
-              @click='editItem(props.item)'
+<!--              @click='editItem(props.item)'-->
             >
               edit
             </v-icon>
             <v-icon
               small
-              @click='deleteItem(props.item)'
+<!--              @click='deleteItem(props.item)'-->
             >
               delete
             </v-icon>
@@ -141,7 +141,13 @@
 </template>
 
 <script>
+  import {mapState,mapGetters} from 'vuex'
   export default {
+    created() {
+      this.$store.dispatch('getProduct')
+      console.log('the store  product is', this.$store)
+
+    },
     data() {
       return {
         dialog: false,
@@ -167,7 +173,6 @@
           {text: 'Samsang', value: 'Samsang'}
         ],
         editedIndex: -1,
-        desserts: [],
         editedItem: {
           productId: '',
           productName: '',
@@ -178,124 +183,41 @@
           sold: 0,
           balance: 0
         },
-        items: [
-          {
-            'productId': '1',
-            'productName': 'LG',
-            'productModel': 'LG-m1',
-            'productOffer': 'pongal offer',
-            'cost': 12378.0,
-            'stock': 20,
-            'sold': 10,
-            'balance': 10
-          },
-          {
-            'productId': '2',
-            'productName': 'LG',
-            'productModel': 'LG-m2',
-            'productOffer': 'diwalli  offer',
-            'cost': 123400.0,
-            'stock': 20,
-            'sold': 10,
-            'balance': 10
-          },
-          {
-            'productId': '3',
-            'productName': 'Samsang',
-            'productModel': 'Samsang-m1',
-            'productOffer': 'diwalli  offer',
-            'cost': 12378.0,
-            'stock': 20,
-            'sold': 10,
-            'balance': 10
-          },
-          {
-            'productId': '4',
-            'productName': 'Samsang',
-            'productModel': 'Samsang-m2',
-            'productOffer': 'diwalli  offer',
-            'cost': 12378.0,
-            'stock': 20,
-            'sold': 10,
-            'balance': 10
-          },
-          {
-            'productId': '5',
-            'productName': 'Sony',
-            'productModel': 'Sony-m1',
-            'productOffer': 'pongal offer',
-            'cost': 12378.0,
-            'stock': 20,
-            'sold': 10,
-            'balance': 10
-          },
-          {
-            'productId': '6',
-            'productName': 'Sony',
-            'productModel': 'Sony-m2',
-            'productOffer': 'pongal offer',
-            'cost': 12378.0,
-            'stock': 20,
-            'sold': 10,
-            'balance': 10
-          },
-          {
-            'productId': '7',
-            'productName': 'Viedocon',
-            'productModel': 'Viedocon-m1',
-            'productOffer': 'pongal offer',
-            'cost': 12378.0,
-            'stock': 20,
-            'sold': 10,
-            'balance': 10
-          },
-          {
-            'productId': '8',
-            'productName': 'Viedocon',
-            'productModel': 'Viedocon-m2',
-            'productOffer': 'pongal offer',
-            'cost': 12378.0,
-            'stock': 20,
-            'sold': 10,
-            'balance': 10
-          }
-        ]
+
       }
     },
-    // created() {
-    //   this.getProduct()
-    // },
+    computed: {
 
-    // computed:{
-    //   items() {
-    //     return this.$store.getters.product
-    //     console.log("the items got :" + items)
+      ...mapState({
+        product: state => state.product
+      }),
+
+      ...mapGetters('product', {})
+    },
+    // methods: {
+    //   editItem (item) {
+    //     this.editedIndex = this.items.indexOf(item)
+    //     this.editedItem = Object.assign({}, item)
+    //     this.items.splice(item.index, 1, item)
+    //     this.dialog = true
+    //     console.log('updating  item', this.editedItem)
+    //     console.log('updating index', this.editedIndex)
+    //     this.$store.dispatch('updateProduct', this.editedItem)
+    //
+    //   },
+    //
+    //   deleteItem (item) {
+    //     const index = this.items.indexOf(item)
+    //     confirm('Are you sure you want to delete this item? ') && this.items.splice(index, 1)
+    //     this.$store.dispatch('deleteProduct', this.item)
+    //
+    //   },
+    //
+    //   showAlert (a) {
+    //     if (event.target.classList.contains('btn__content')) return
+    //     alert('Alert! \n' + a.productName)
     //   }
-    // },
-    methods: {
-      editItem (item) {
-        this.editedIndex = this.items.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.items.splice(item.index, 1, item)
-        this.dialog = true
-        console.log('updating  item', this.editedItem)
-        console.log('updating index', this.editedIndex)
-        this.$store.dispatch('updateProduct', this.editedItem)
-
-      },
-
-      deleteItem (item) {
-        const index = this.items.indexOf(item)
-        confirm('Are you sure you want to delete this item? ') && this.items.splice(index, 1)
-        this.$store.dispatch('deleteProduct', this.item)
-
-      },
-
-      showAlert (a) {
-        if (event.target.classList.contains('btn__content')) return
-        alert('Alert! \n' + a.productName)
-      }
-    }
+    // }
   }
 </script>
 
