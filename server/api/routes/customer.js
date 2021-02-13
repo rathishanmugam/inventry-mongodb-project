@@ -50,7 +50,7 @@ module.exports = function (router) {
             email: req.body.email
         }
         console.log('the updating record is :', doc)
-        customer.update(qry, doc, function (err, respRaw) {
+        customer.updateOne(qry, doc, function (err, respRaw) {
             if (err) return console.log(err)
             res.status(200).json(respRaw)
         })
